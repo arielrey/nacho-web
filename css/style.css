@@ -1,0 +1,12 @@
+.body{
+    background-color: rgb(43, 43, 43);
+}
+
+.navegacion{
+    margin: 12%;
+}
+
+.boton-nav{
+    text-decoration: none;
+    margin-left: 2%;
+}
