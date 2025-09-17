@@ -19,7 +19,7 @@ const canvas = document.getElementById("game");
         player.y + player.h > door.y
       ) {
         alert("Entraste en la puerta → Ir a Proyectos 🚀");
-        window.location.href = "proyectos.html"; // Redirección
+        window.location.href = "projects.html"; // Redirección
       }
     });
 
