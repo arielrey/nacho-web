@@ -1,9 +1,9 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 
-let player = { x: 100, y: 100, w: 40, h: 40, color: "blue" };
+let player = { x: 100, y: 100, w: 48, h: 48 }; // tamaño del sprite
 let door = { x: 600, y: 250, w: 60, h: 100, color: "black" };
-let speed = 6;
+let speed = 5;
 
 // Direcciones activas
 let keys = {
@@ -14,13 +14,47 @@ let keys = {
 };
 
 // ---------------------------
+// SPRITES
+// ---------------------------
+const spriteFront = new Image();
+spriteFront.src = "./assets/katarina/front-kata.png";
+
+const spriteLeft = [new Image(), new Image()];
+spriteLeft[0].src = "./assets/katarina/left1-kata.png";
+spriteLeft[1].src = "./assets/katarina/left2-kata.png";
+
+const spriteRight = [new Image(), new Image()];
+spriteRight[0].src = "./assets/katarina/right1-kata.png";
+spriteRight[1].src = "./assets/katarina/right2-kata.png";
+
+let frameIndex = 0;
+let frameTick = 0;
+let currentSprite = spriteFront; // sprite inicial (quieto)
+
+// ---------------------------
 // FUNCIONES
 // ---------------------------
 function movePlayer() {
-  if (keys.left) player.x -= speed;
-  if (keys.right) player.x += speed;
-  if (keys.up) player.y -= speed;
-  if (keys.down) player.y += speed;
+  let moving = false;
+
+  if (keys.left) {
+    player.x -= speed;
+    currentSprite = spriteLeft[frameIndex];
+    moving = true;
+  }
+  if (keys.right) {
+    player.x += speed;
+    currentSprite = spriteRight[frameIndex];
+    moving = true;
+  }
+  if (keys.up) {
+    player.y -= speed;
+    moving = true;
+  }
+  if (keys.down) {
+    player.y += speed;
+    moving = true;
+  }
 
   // Limitar bordes
   if (player.x < 0) player.x = 0;
@@ -37,6 +71,17 @@ function movePlayer() {
   ) {
     alert("Entraste en la puerta → Ir a Proyectos 🚀");
     window.location.href = "projects.html";
+  }
+
+  // Animación de caminata
+  if (moving) {
+    frameTick++;
+    if (frameTick > 10) { // cambia frame cada 10 ticks
+      frameIndex = (frameIndex + 1) % 2;
+      frameTick = 0;
+    }
+  } else {
+    currentSprite = spriteFront;
   }
 }
 
@@ -64,7 +109,6 @@ function setupTouchControl(btnId, dir) {
   const btn = document.getElementById(btnId);
   if (!btn) return;
 
-  // Al presionar
   btn.addEventListener("touchstart", (e) => {
     e.preventDefault();
     keys[dir] = true;
@@ -75,7 +119,6 @@ function setupTouchControl(btnId, dir) {
     keys[dir] = true;
   });
 
-  // Al soltar
   btn.addEventListener("touchend", () => {
     keys[dir] = false;
   });
@@ -84,7 +127,6 @@ function setupTouchControl(btnId, dir) {
     keys[dir] = false;
   });
 
-  // Si el dedo/mouse sale del botón
   btn.addEventListener("mouseleave", () => {
     keys[dir] = false;
   });
@@ -103,9 +145,8 @@ function draw() {
 
   movePlayer();
 
-  // Dibujar jugador
-  ctx.fillStyle = player.color;
-  ctx.fillRect(player.x, player.y, player.w, player.h);
+  // Dibujar jugador con sprite
+  ctx.drawImage(currentSprite, player.x, player.y, player.w, player.h);
 
   // Dibujar puerta
   ctx.fillStyle = door.color;
