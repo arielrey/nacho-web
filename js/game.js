@@ -1,21 +1,14 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 
-let player = { x: 100, y: 100, w: 48, h: 48 }; // tamaño del sprite
+// TAMAÑO PLAYER
+let player = { x: 100, y: 100, w: 48, h: 48 };
 let door = { x: 600, y: 250, w: 60, h: 100, color: "black" };
 let speed = 5;
 
-// Direcciones activas
-let keys = {
-  left: false,
-  right: false,
-  up: false,
-  down: false,
-};
+let keys = { left: false, right: false, up: false, down: false };
 
-// ---------------------------
 // SPRITES
-// ---------------------------
 const spriteFront = new Image();
 spriteFront.src = "./assets/katarina/front-kata.png";
 
@@ -29,11 +22,24 @@ spriteRight[1].src = "./assets/katarina/right2-kata.png";
 
 let frameIndex = 0;
 let frameTick = 0;
-let currentSprite = spriteFront; // sprite inicial (quieto)
+let currentSprite = spriteFront;
 
-// ---------------------------
-// FUNCIONES
-// ---------------------------
+// ==========================================================
+//     CANVAS RESPONSIVE REAL
+// ==========================================================
+function resizeCanvasToDisplaySize() {
+  const width = canvas.clientWidth;
+  const height = canvas.clientHeight;
+
+  if (canvas.width !== width || canvas.height !== height) {
+    canvas.width = width;
+    canvas.height = height;
+  }
+}
+
+// ==========================================================
+//     MOVIMIENTO
+// ==========================================================
 function movePlayer() {
   let moving = false;
 
@@ -56,13 +62,13 @@ function movePlayer() {
     moving = true;
   }
 
-  // Limitar bordes
+  // BORDERS
   if (player.x < 0) player.x = 0;
   if (player.y < 0) player.y = 0;
   if (player.x + player.w > canvas.width) player.x = canvas.width - player.w;
   if (player.y + player.h > canvas.height) player.y = canvas.height - player.h;
 
-  // Colisión con puerta
+  // PUERTA (COLISIÓN)
   if (
     player.x < door.x + door.w &&
     player.x + player.w > door.x &&
@@ -73,10 +79,10 @@ function movePlayer() {
     window.location.href = "projects.html";
   }
 
-  // Animación de caminata
+  // ANIMACIÓN
   if (moving) {
     frameTick++;
-    if (frameTick > 10) { // cambia frame cada 10 ticks
+    if (frameTick > 10) {
       frameIndex = (frameIndex + 1) % 2;
       frameTick = 0;
     }
@@ -85,9 +91,9 @@ function movePlayer() {
   }
 }
 
-// ---------------------------
-// CONTROLES TECLADO
-// ---------------------------
+// ==========================================================
+//     TECLADO
+// ==========================================================
 document.addEventListener("keydown", (e) => {
   if (e.key === "a") keys.left = true;
   if (e.key === "d") keys.right = true;
@@ -102,9 +108,9 @@ document.addEventListener("keyup", (e) => {
   if (e.key === "s") keys.down = false;
 });
 
-// ---------------------------
-// CONTROLES TÁCTILES
-// ---------------------------
+// ==========================================================
+//     BOTONES TÁCTILES
+// ==========================================================
 function setupTouchControl(btnId, dir) {
   const btn = document.getElementById(btnId);
   if (!btn) return;
@@ -114,13 +120,12 @@ function setupTouchControl(btnId, dir) {
     keys[dir] = true;
   });
 
-  btn.addEventListener("mousedown", (e) => {
-    e.preventDefault();
-    keys[dir] = true;
-  });
-
   btn.addEventListener("touchend", () => {
     keys[dir] = false;
+  });
+
+  btn.addEventListener("mousedown", () => {
+    keys[dir] = true;
   });
 
   btn.addEventListener("mouseup", () => {
@@ -137,18 +142,20 @@ setupTouchControl("down", "down");
 setupTouchControl("left", "left");
 setupTouchControl("right", "right");
 
-// ---------------------------
-// DIBUJAR JUEGO
-// ---------------------------
+// ==========================================================
+//     LOOP PRINCIPAL DEL JUEGO
+// ==========================================================
 function draw() {
+  resizeCanvasToDisplaySize(); // <-- RESPONSIVE REAL
+
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   movePlayer();
 
-  // Dibujar jugador con sprite
+  // Player
   ctx.drawImage(currentSprite, player.x, player.y, player.w, player.h);
 
-  // Dibujar puerta
+  // Door
   ctx.fillStyle = door.color;
   ctx.fillRect(door.x, door.y, door.w, door.h);
 
@@ -156,4 +163,3 @@ function draw() {
 }
 
 draw();
-

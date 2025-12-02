@@ -3,89 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
   <title>Home</title>
 </head>
+
 <body class="body">
 
-  <!-- NAVBAR RESPONSIVE -->
+  <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-dark navbar-color">
     <div class="container">
-      <!-- Logo o título -->
       <a class="navbar-brand a-color-name" href="index.html">Ariel Ignacio Rey</a>
 
-      <!-- Botón hamburguesa -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!-- Enlaces -->
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto"> <!-- ms-auto = empuja los links a la derecha -->
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about-me.html">About me</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="projects.html">Projects</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
-          </li>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about-me.html">About me</a></li>
+          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- CONTENIDO DE EJEMPLO -->
+  <!-- TEXTO -->
   <div class="container text-center mt-5">
     <h1 class="text-light">Software Developer</h1>
     <p class="text-secondary">Esta sección se adapta a cualquier pantalla 📱💻</p>
   </div>
 
-  <!-- CONTENIDO DE EJEMPLO USANDO CONTAINER-->
-    <div class="container">
-        <p class="text-secondary">Este bloque se centra y cambia su ancho según el tamaño de pantalla.</p>
-    </div>
+  <div class="container text-center">
+    <p class="text-secondary">Este bloque se centra y cambia su ancho según el tamaño de pantalla.</p>
+  </div>
 
-    <div>
-      <div class="text-center">
-        <h2 class="text-secondary">Mini juego: entra por la puerta 👾</h2>
-        <canvas id="game" width="800" height="600" class="canvas-game container"></canvas>
-        
-      </div>
-      <div class="touch-controls d-lg-none text-center mt-3">
-          <button class="btn btn-dark m-1" id="up">⬆️</button><br>
-          <button class="btn btn-dark m-1" id="left">⬅️</button>
-          <button class="btn btn-dark m-1" id="down">⬇️</button>
-          <button class="btn btn-dark m-1" id="right">➡️</button>
-        </div>
-        <script src="./js/game.js"></script>
-    </div>
+  <!-- IMAGEN DEL TÍTULO -->
+  <div class="container text-center">
+    <img src="assets/titles/home_game_g.gif" class="img-fluid" alt="">
+  </div>
+
+  <!-- CANVAS RESPONSIVE -->
+  <canvas id="game" width="1000" height="800" class="canvas-game"></canvas>
+
+  <!-- BOTONES MÓVILES -->
+  <div class="touch-controls d-lg-none text-center mt-3">
+    <button class="btn btn-dark m-1" id="up">⬆️</button><br>
+    <button class="btn btn-dark m-1" id="left">⬅️</button>
+    <button class="btn btn-dark m-1" id="down">⬇️</button>
+    <button class="btn btn-dark m-1" id="right">➡️</button>
+  </div>
 
   
-
-<footer class="footer container-fluid py-3 text-center">
-
+  <!-- FOOTER -->
+  <footer class="footer container-fluid py-3 text-center">
     <p class="mb-2">Developed by Ariel Ignacio Rey</p>
 
     <div class="d-flex justify-content-center align-items-center gap-5">
-        <a href="" class="footer-links">
-          <img src="./assets/small-icons/LinkedIn.png" alt="" class="img-fluid" style="width: 35px;">
-        </a>
-        <a href="" class="footer-links">
-          <img src="./assets/small-icons/Discord.png" alt="" class="img-fluid" style="width: 35px;">
-        </a>
-        <a href="" class="footer-links">
-          <img src="./assets/small-icons/Gmail.png" alt="" class="img-fluid" style="width: 35px;">
-        </a>
+      <a href=""><img src="./assets/small-icons/LinkedIn.png" style="width:35px;"></a>
+      <a href=""><img src="./assets/small-icons/Discord.png" style="width:35px;"></a>
+      <a href=""><img src="./assets/small-icons/Gmail.png" style="width:35px;"></a>
     </div>
-</footer>
+  </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="./js/game.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
