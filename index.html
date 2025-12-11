@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="./css/style.css">
-  <title>Home</title>
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home - Mini RPG Portfolio</title>
 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
 <body class="body">
 
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-dark navbar-color">
     <div class="container">
       <a class="navbar-brand a-color-name" href="index.html">Ariel Ignacio Rey</a>
-
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
-
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
@@ -30,25 +28,25 @@
     </div>
   </nav>
 
-  <!-- TEXTO -->
+    <!-- TEXTO -->
   <div class="container text-center mt-5">
-    <h1 class="text-light">Software Developer</h1>
-    <p class="text-secondary">Esta sección se adapta a cualquier pantalla 📱💻</p>
+    <h1 class="text-light">Software Developer</h1><br>
+    <p class="text-secondary">Welcome to my portfolio </p>
   </div>
 
+  
+    <!-- IMAGEN DEL TÍTULO -->
   <div class="container text-center">
-    <p class="text-secondary">Este bloque se centra y cambia su ancho según el tamaño de pantalla.</p>
+    <img src="./assets/titles/home_game_g.gif" class="img-fluid" alt="">
   </div>
 
-  <!-- IMAGEN DEL TÍTULO -->
-  <div class="container text-center">
-    <img src="assets/titles/home_game_g.gif" class="img-fluid" alt="">
+
+  <!-- CANVAS -->
+  <div class="canvas-wrap">
+    <canvas id="game" class="canvas-game" width="1000" height="800" ></canvas>
   </div>
 
-  <!-- CANVAS RESPONSIVE -->
-  <canvas id="game" width="1000" height="800" class="canvas-game"></canvas>
-
-  <!-- BOTONES MÓVILES -->
+  <!-- TOUCH CONTROLS (solo en pantallas pequeñas) -->
   <div class="touch-controls d-lg-none text-center mt-3">
     <button class="btn btn-dark m-1" id="up">⬆️</button><br>
     <button class="btn btn-dark m-1" id="left">⬅️</button>
@@ -56,11 +54,9 @@
     <button class="btn btn-dark m-1" id="right">➡️</button>
   </div>
 
-  
   <!-- FOOTER -->
   <footer class="footer container-fluid py-3 text-center">
     <p class="mb-2">Developed by Ariel Ignacio Rey</p>
-
     <div class="d-flex justify-content-center align-items-center gap-5">
       <a href=""><img src="./assets/small-icons/LinkedIn.png" style="width:35px;"></a>
       <a href=""><img src="./assets/small-icons/Discord.png" style="width:35px;"></a>

@@ -8,8 +8,10 @@
 }
 
 /* Fondo general */
-.body {
+body, .body {
     background-color: var(--color-black);
+    margin: 0;
+    font-family: Inter, system-ui, sans-serif;
 }
 
 /* NAVBAR */
@@ -21,26 +23,42 @@
     color: var(--color-yellow);
 }
 
-/* CANVAS DEL JUEGO RESPONSIVE */
+/* WRAPPER PARA CENTRAR Y CONTROLAR EL CANVAS */
+.canvas-wrap {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 0 12px;
+}
+
+/* CANVAS VISUAL (responsive) */
+/* IMPORTANTE: NO BACKGROUND-IMAGE si usas el sistema RPG */
 .canvas-game {
     width: 100%;
-    max-width: 800px;
+    max-width: 900px;
     height: auto;
     display: block;
     margin: 0 auto;
 
-    background-image: url("../assets/backgrounds/background.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-color: transparent; /* limpio para RPG */
+    border: 2px solid rgba(255,255,255,0.05);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+}
 
-    border: 2px solid var(--color-grey);
+/* TOUCH controls */
+.touch-controls .btn {
+    width: 56px;
+    height: 56px;
+    font-size: 20px;
+    border-radius: 10px;
 }
 
 /* FOOTER */
 .footer {
     background-color: var(--color-black);
     padding: 30px;
+    color: #aaa;
+    text-align: center;
 }
 
 /* CARDS */
